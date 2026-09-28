@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rigid Fitness – Transform Your Body</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        rigidRed: '#FF0033',
+                        rigidDark: '#0A0A0A',
+                        glass: 'rgba(255, 255, 255, 0.05)',
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(255, 0, 51, 0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Utility */
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 0, 51, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(255, 0, 51, 0.2);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF0033;
+        }
+
+        /* Modal Animation */
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        /* Hero Text Clip */
+        .text-gradient {
+            background: linear-gradient(to right, #fff, #999);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 transition-all duration-300 glass-panel border-b-0" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold tracking-tighter flex items-center gap-2">
+                <span class="text-rigidRed text-4xl">⚡</span>
+                <span class="uppercase tracking-widest">Rigid<span class="text-rigidRed">Fitness</span></span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+                <a href="#facilities" class="hover:text-white transition-colors">Facilities</a>
+                <a href="#trainers" class="hover:text-white transition-colors">Trainers</a>
+                <a href="#pricing" class="hover:text-white transition-colors">Membership</a>
+                <a href="#testimonials" class="hover:text-white transition-colors">Stories</a>
+                <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+            </div>
+
+            <!-- CTA Button & Mobile Menu -->
+            <div class="flex items-center gap-4">
+                <button onclick="openModal()"
+                    class="hidden md:block bg-rigidRed hover:bg-red-700 text-white px-6 py-2.5 rounded-full font-semibold transition-transform hover:scale-105 shadow-neon">
+                    Join Now
+                </button>
+                <div class="flex gap-3 text-gray-400 md:hidden">
+                    <span class="material-icons cursor-pointer hover:text-white transition">menu</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop"
+                class="w-full h-full object-cover opacity-40 scale-105" alt="Gym Background">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20">
+            <span
+                class="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/10 text-rigidRed text-xs font-bold tracking-wider mb-6 backdrop-blur-md animate-pulse">
+                #1 PREMIUM FITNESS CLUB
+            </span>
+            <h1 class="text-6xl md:text-8xl font-extrabold leading-none tracking-tight mb-6">
+                UNLEASH YOUR <br />
+                <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-rigidRed to-orange-600">POTENTIAL</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+                Experience world-class training, state-of-the-art equipment, and a community driven by results. Your
+                transformation starts here.
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <button onclick="openModal()"
+                    class="w-full md:w-auto px-8 py-4 bg-rigidRed rounded-xl text-white font-bold text-lg hover:bg-red-700 transition hover:-translate-y-1 shadow-[0_10px_40px_-10px_rgba(255,0,51,0.5)]">
+                    Start Your Journey
+                </button>
+                <button onclick="openVideoModal()"
+                    class="w-full md:w-auto px-8 py-4 border border-white/20 rounded-xl text-white font-semibold hover:bg-white/10 transition backdrop-blur-sm flex items-center justify-center gap-2">
+                    <i class="material-icons">play_circle_outline</i>
+                    <span>View Virtual Tour</span>
+                </button>
+            </div>
+
+            <!-- Stats -->
+            <div class="mt-20 grid grid-cols-3 gap-8 border-t border-white/10 pt-10">
+                <div>
+                    <div class="text-3xl font-bold text-white">2500+</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Active Members</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-white">40+</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Expert Trainers</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-white">24/7</div>
+                    <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Facility Access</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FACILITIES SECTION (9 Cards) -->
+    <section id="facilities" class="py-32 relative bg-rigidDark">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">World-Class <span
+                        class="text-rigidRed">Facilities</span></h2>
+                <p class="text-gray-400">Everything you need to reach your peak performance.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition"></div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2">Advanced Strength Zone</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Hammer Strength equipment and free weights area
+                            specifically designed for heavy lifting and hypertrophy.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.pexels.com/photos/12250460/pexels-photo-12250460.jpeg"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition"></div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2">Cardio Theatre</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Treadmills, ellipticals, and stair masters
+                            equipped with individual screens and heart rate monitoring.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition"></div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2">Calisthenics & CrossFit</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Dedicated functional training zone with monkey
+                            bras, battle ropes, sleds, and plyometric boxes.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1522898467493-49726bf28798"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition"></div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2">Zumba & Dance Studio</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Spacious wooden-floor studio with high-fidelity
+                            sound systems for energetic group classes.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition"></div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2">Yoga & Pilaties</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">A serene environment designed for flexibility,
+                            core strength, and mindfulness practice.</p>
+                    </div>
+                </div>
+
+                <!-- Card 6: CAFE -->
+                <div class="glass-card rounded-2xl overflow-hidden group border-rigidRed/30">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.pexels.com/photos/4913361/pexels-photo-4913361.jpeg"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div
+                            class="absolute top-4 right-4 bg-rigidRed text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                            NEW</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2 text-rigidRed">Fuel Station Café</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">In-house healthy kitchen serving protein
+                            shakes, keto meals, and pre-workout espresso.</p>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition"></div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2">Recovery Spa</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Post-workout steam room, sauna, and ice baths
+                            to accelerate muscle recovery.</p>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition"></div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2">Private Training Pods</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Exclusive zones for 1-on-1 personal training
+                            sessions away from the general crowd.</p>
+                    </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.pexels.com/photos/12255816/pexels-photo-12255816.jpeg"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition"></div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold mb-2">Premium Locker Rooms</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Secure digital lockers, rain showers, and
+                            grooming stations with premium amenities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOUNDERS SECTION -->
+    <section class="py-32 bg-zinc-950 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-rigidRed rounded-full blur-[150px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">The <span
+                    class="text-rigidRed">Visionaries</span></h2>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Founder 1 -->
+                <div
+                    class="glass-card p-10 rounded-3xl flex flex-col md:flex-row gap-8 items-center border-l-4 border-rigidRed">
+                    <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296"
+                        class="w-32 h-32 rounded-2xl object-cover shadow-lg shadow-black/50">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-1">Rajiv Malhotra</h3>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mb-4">Co-Founder • Age 45</p>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                            "I built Rigid Fitness to bridge the gap between commercial gyms and elite training centers.
+                            My goal is to create a space where serious athletes and beginners alike can push their
+                            limits."
+                        </p>
+                        <p class="text-rigidRed text-xs font-bold uppercase">driven by Innovation</p>
+                    </div>
+                </div>
+
+                <!-- Founder 2 -->
+                <div
+                    class="glass-card p-10 rounded-3xl flex flex-col md:flex-row gap-8 items-center border-r-4 border-rigidRed">
+                    <div class="order-2 md:order-1 text-right md:text-left">
+                        <h3 class="text-2xl font-bold mb-1">Simran Kaur</h3>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mb-4">Co-Founder • Age 38</p>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                            "Fitness is not just physical; it's mental therapy. My passion lies in creating a holistic
+                            community where every member feels supported, empowered, and stronger every day."
+                        </p>
+                        <p class="text-rigidRed text-xs font-bold uppercase">driven by Community</p>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2"
+                        class="w-32 h-32 rounded-2xl object-cover shadow-lg shadow-black/50 order-1 md:order-2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRAINERS SECTION (6 Cards) -->
+    <section id="trainers" class="py-32 bg-black relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">Meet The <span class="text-rigidRed">Elite
+                    Squad</span></h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Trainer 1 -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col items-center text-center group">
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-rigidRed mb-6 p-1">
+                        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5"
+                            class="w-full h-full object-cover rounded-full grayscale group-hover:grayscale-0 transition duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold">Arjun Mehta</h3>
+                    <p class="text-rigidRed text-sm font-medium mb-4">Head Strength Coach</p>
+                    <p class="text-gray-500 text-sm mb-6">NSCA Certified specialist in hypertrophy and powerlifting with
+                        8+ years experience.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i
+                                class="material-icons text-xl">camera_alt</i></a> <!-- Instagram -->
+                        <a href="#" class="text-gray-400 hover:text-white"><i
+                                class="material-icons text-xl">facebook</i></a>
+                    </div>
+                </div>
+
+                <!-- Trainer 2 -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col items-center text-center group">
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-700 mb-6 p-1">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956"
+                            class="w-full h-full object-cover rounded-full grayscale group-hover:grayscale-0 transition duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold">Neha Kapoor</h3>
+                    <p class="text-rigidRed text-sm font-medium mb-4">Zumba & HIIT Expert</p>
+                    <p class="text-gray-500 text-sm mb-6">Former dance choreographer turned fitness pro. Makes burning
+                        calories feel like a party.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i
+                                class="material-icons text-xl">camera_alt</i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i
+                                class="material-icons text-xl">facebook</i></a>
+                    </div>
+                </div>
+
+                <!-- Trainer 3 -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col items-center text-center group">
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-700 mb-6 p-1">
+                        <img src="https://images.unsplash.com/photo-1597347343908-2937e7dcc560"
+                            class="w-full h-full object-cover rounded-full grayscale group-hover:grayscale-0 transition duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold">Vikram Singh</h3>
+                    <p class="text-rigidRed text-sm font-medium mb-4">CrossFit Level 2</p>
+                    <p class="text-gray-500 text-sm mb-6">Specializes in functional movement, mobility, and
+                        high-intensity interval training.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i
+                                class="material-icons text-xl">camera_alt</i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i
+                                class="material-icons text-xl">facebook</i></a>
+                    </div>
+                </div>
+
+                <!-- Trainer 4 -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col items-center text-center group">
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-700 mb-6 p-1">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48"
+                            class="w-full h-full object-cover rounded-full grayscale group-hover:grayscale-0 transition duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold">Rohan Das</h3>
+                    <p class="text-rigidRed text-sm font-medium mb-4">Body Transformation</p>
+                    <p class="text-gray-500 text-sm mb-6">Helped over 200 clients achieve their dream physique through
+                        science-based nutrition.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i
+                                class="material-icons text-xl">camera_alt</i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i
+                                class="material-icons text-xl">facebook</i></a>
+                    </div>
+                </div>
+
+                <!-- Trainer 5 -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col items-center text-center group">
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-700 mb-6 p-1">
+                        <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5"
+                            class="w-full h-full object-cover rounded-full grayscale group-hover:grayscale-0 transition duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold">Sara Ali</h3>
+                    <p class="text-rigidRed text-sm font-medium mb-4">Yoga & Rehabilitation</p>
+                    <p class="text-gray-500 text-sm mb-6">Registered physiotherapist combining yoga flow with injury
+                        prevention techniques.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i
+                                class="material-icons text-xl">camera_alt</i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i
+                                class="material-icons text-xl">facebook</i></a>
+                    </div>
+                </div>
+
+                <!-- Trainer 6 -->
+                <div class="glass-card p-6 rounded-3xl flex flex-col items-center text-center group">
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-700 mb-6 p-1">
+                        <img src="https://images.unsplash.com/photo-1611672585731-fa10603fb9e0"
+                            class="w-full h-full object-cover rounded-full grayscale group-hover:grayscale-0 transition duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold">Kabir Khan</h3>
+                    <p class="text-rigidRed text-sm font-medium mb-4">Boxing & MMA</p>
+                    <p class="text-gray-500 text-sm mb-6">Pro fighter teaching self-defense and high-cardio boxing
+                        drills.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i
+                                class="material-icons text-xl">camera_alt</i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i
+                                class="material-icons text-xl">facebook</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION (6 Cards) -->
+    <section id="pricing" class="py-32 bg-zinc-950 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">Membership <span
+                    class="text-rigidRed">Plans</span></h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Plan 1 -->
+                <div class="glass-card p-8 rounded-3xl border border-white/5 hover:border-rigidRed/50 transition">
+                    <h3 class="text-xl font-bold text-gray-300 mb-2">1 Day Pass</h3>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-4xl font-bold text-white">₹500</span>
+                        <span class="text-sm text-gray-500">/single access</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-gray-400 text-sm">
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Full Gym Access</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Locker & Shower</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Valid for 24 Hours</li>
+                    </ul>
+                    <button onclick="openModal()"
+                        class="w-full border border-white/20 py-3 rounded-xl hover:bg-white/10 transition text-white font-semibold">Get
+                        Pass</button>
+                </div>
+
+                <!-- Plan 2 -->
+                <div class="glass-card p-8 rounded-3xl border border-white/5 hover:border-rigidRed/50 transition">
+                    <h3 class="text-xl font-bold text-gray-300 mb-2">Monthly Basic</h3>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-4xl font-bold text-white">₹1,999</span>
+                        <span class="text-sm text-gray-500">/month</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-gray-400 text-sm">
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Gym & Cardio</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            General Trainer Support</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Locker Access</li>
+                    </ul>
+                    <button onclick="openModal()"
+                        class="w-full border border-white/20 py-3 rounded-xl hover:bg-white/10 transition text-white font-semibold">Choose
+                        Basic</button>
+                </div>
+
+                <!-- Plan 3 (Featured) -->
+                <div
+                    class="glass-card p-8 rounded-3xl border-2 border-rigidRed relative transform md:-translate-y-4 bg-white/5">
+                    <div
+                        class="absolute top-0 right-0 bg-rigidRed text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">
+                        MOST POPULAR</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Quarterly Pro</h3>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-4xl font-bold text-white">₹5,499</span>
+                        <span class="text-sm text-gray-500">/3 months</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-gray-300 text-sm">
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            All Gym Facilities</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Free Group Classes (Zumba/Yoga)</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i> 2
+                            Personal Training Sessions</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Nutrition Consultation</li>
+                    </ul>
+                    <button onclick="openModal()"
+                        class="w-full bg-rigidRed py-3 rounded-xl hover:bg-red-700 transition text-white font-bold shadow-lg shadow-red-900/40">Choose
+                        Pro</button>
+                </div>
+
+                <!-- Plan 4 -->
+                <div class="glass-card p-8 rounded-3xl border border-white/5 hover:border-rigidRed/50 transition">
+                    <h3 class="text-xl font-bold text-gray-300 mb-2">Biannual Saver</h3>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-4xl font-bold text-white">₹9,999</span>
+                        <span class="text-sm text-gray-500">/6 months</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-gray-400 text-sm">
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Includes 1 Month Freeze</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            All Group Classes</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Spa Access (2x/month)</li>
+                    </ul>
+                    <button onclick="openModal()"
+                        class="w-full border border-white/20 py-3 rounded-xl hover:bg-white/10 transition text-white font-semibold">Choose
+                        Saver</button>
+                </div>
+
+                <!-- Plan 5 -->
+                <div class="glass-card p-8 rounded-3xl border border-white/5 hover:border-rigidRed/50 transition">
+                    <h3 class="text-xl font-bold text-gray-300 mb-2">Yearly Elite</h3>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-4xl font-bold text-white">₹18,999</span>
+                        <span class="text-sm text-gray-500">/year</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-gray-400 text-sm">
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Priority 24/7 Access</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Unlimited Spa & Recovery</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Bring a Friend (Weekends)</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Free Merchandise Kit</li>
+                    </ul>
+                    <button onclick="openModal()"
+                        class="w-full border border-white/20 py-3 rounded-xl hover:bg-white/10 transition text-white font-semibold">Choose
+                        Elite</button>
+                </div>
+
+                <!-- Plan 6 -->
+                <div class="glass-card p-8 rounded-3xl border border-white/5 hover:border-rigidRed/50 transition">
+                    <h3 class="text-xl font-bold text-gray-300 mb-2">Personal Training</h3>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="text-4xl font-bold text-white">₹12,000</span>
+                        <span class="text-sm text-gray-500">/12 sessions</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-gray-400 text-sm">
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            1-on-1 Dedicated Coach</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Customized Workout Plan</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Advanced Diet Tracking</li>
+                        <li class="flex items-center gap-3"><i class="material-icons text-rigidRed text-sm">check</i>
+                            Body Composition Analysis</li>
+                    </ul>
+                    <button onclick="openModal()"
+                        class="w-full border border-white/20 py-3 rounded-xl hover:bg-white/10 transition text-white font-semibold">Get
+                        Trainer</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION (9 Cards) -->
+    <section id="testimonials" class="py-32 bg-rigidDark border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">Success <span
+                    class="text-rigidRed">Stories</span></h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="absolute -top-4 -left-4 text-6xl text-rigidRed opacity-30">“</div>
+                    <p class="text-gray-300 italic mb-6 relative z-10">"I tried 5 different gyms in the city, but Rigid
+                        Fitness is on another level. The equipment is top-notch and the vibe is motivating."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="font-bold">Rahul Verma</h4>
+                            <p class="text-xs text-green-400">Lost 15kg in 6 months</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="absolute -top-4 -left-4 text-6xl text-rigidRed opacity-30">“</div>
+                    <p class="text-gray-300 italic mb-6 relative z-10">"The trainers here actually care. Arjun's program
+                        helped me recover from a back injury and now I'm deadlifting pain-free."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/women/2.jpg" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="font-bold">Priya Sharma</h4>
+                            <p class="text-xs text-green-400">Member since 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="absolute -top-4 -left-4 text-6xl text-rigidRed opacity-30">“</div>
+                    <p class="text-gray-300 italic mb-6 relative z-10">"Love the Zumba classes! Neha is full of energy.
+                        It’s the highlighting of my day after a stressful work shift."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/women/3.jpg" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="font-bold">Ananya Gupta</h4>
+                            <p class="text-xs text-green-400">Regular Attendee</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="absolute -top-4 -left-4 text-6xl text-rigidRed opacity-30">“</div>
+                    <p class="text-gray-300 italic mb-6 relative z-10">"The cafe is a game changer. Grabbing a fresh
+                        protein shake right after a workout makes life so much easier."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/men/4.jpg" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="font-bold">Vikram Malhotra</h4>
+                            <p class="text-xs text-green-400">Entrepreneur</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="absolute -top-4 -left-4 text-6xl text-rigidRed opacity-30">“</div>
+                    <p class="text-gray-300 italic mb-6 relative z-10">"Cleanliness is my priority, and this place is
+                        spotless. The housekeeping staff does an amazing job 24/7."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/men/5.jpg" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="font-bold">Amit Patel</h4>
+                            <p class="text-xs text-green-400">Doctor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 6 -->
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="absolute -top-4 -left-4 text-6xl text-rigidRed opacity-30">“</div>
+                    <p class="text-gray-300 italic mb-6 relative z-10">"A true premium experience. The crowd is decent,
+                        no waiting for machines, and the vibe is just pure focus."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/women/6.jpg" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="font-bold">Sneha Reddy</h4>
+                            <p class="text-xs text-green-400">Architect</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 7 -->
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="absolute -top-4 -left-4 text-6xl text-rigidRed opacity-30">“</div>
+                    <p class="text-gray-300 italic mb-6 relative z-10">"Joined for the weight loss, stayed for the
+                        community. I've made some of my best friends here."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/men/7.jpg" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="font-bold">Karan Johar</h4>
+                            <p class="text-xs text-green-400">Student</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 8 -->
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="absolute -top-4 -left-4 text-6xl text-rigidRed opacity-30">“</div>
+                    <p class="text-gray-300 italic mb-6 relative z-10">"The CrossFit section is legit. Great equipment
+                        for olympic lifting. Highly recommended for serious athletes."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/men/8.jpg" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="font-bold">David Raj</h4>
+                            <p class="text-xs text-green-400">Athlete</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 9 -->
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <div class="absolute -top-4 -left-4 text-6xl text-rigidRed opacity-30">“</div>
+                    <p class="text-gray-300 italic mb-6 relative z-10">"Best decision of 2025. It's expensive, but you
+                        get what you pay for. The spa recovery is worth the membership alone."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/women/9.jpg" class="w-12 h-12 rounded-full">
+                        <div>
+                            <h4 class="font-bold">Meera Nair</h4>
+                            <p class="text-xs text-green-400">Corporate Executive</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-32 bg-black relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">Frequently Asked <span
+                    class="text-rigidRed">Questions</span></h2>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <details
+                    class="glass-panel p-6 rounded-2xl group marker:content-none cursor-pointer open:bg-white/5 transition-all">
+                    <summary class="flex justify-between items-center font-semibold text-lg list-none">
+                        <span>Is there a long-term contract?</span>
+                        <span
+                            class="material-icons transform group-open:rotate-180 transition">keyboard_arrow_down</span>
+                    </summary>
+                    <p class="text-gray-400 mt-4 leading-relaxed">No, we believe in freedom. You can choose monthly
+                        plans and cancel anytime with a 30-day notice. We also offer discounted annual plans for
+                        committed members.</p>
+                </details>
+
+                <!-- FAQ Item 2 -->
+                <details
+                    class="glass-panel p-6 rounded-2xl group marker:content-none cursor-pointer open:bg-white/5 transition-all">
+                    <summary class="flex justify-between items-center font-semibold text-lg list-none">
+                        <span>Can I freeze my membership if I travel?</span>
+                        <span
+                            class="material-icons transform group-open:rotate-180 transition">keyboard_arrow_down</span>
+                    </summary>
+                    <p class="text-gray-400 mt-4 leading-relaxed">Yes! Annual members can freeze their membership for up
+                        to 45 days per year. Monthly members can pause for a small maintenance fee.</p>
+                </details>
+
+                <!-- FAQ Item 3 -->
+                <details
+                    class="glass-panel p-6 rounded-2xl group marker:content-none cursor-pointer open:bg-white/5 transition-all">
+                    <summary class="flex justify-between items-center font-semibold text-lg list-none">
+                        <span>Do you offer a free trial?</span>
+                        <span
+                            class="material-icons transform group-open:rotate-180 transition">keyboard_arrow_down</span>
+                    </summary>
+                    <p class="text-gray-400 mt-4 leading-relaxed">Absolutely. We offer a complimentary 1-Day Pass so you
+                        can experience our facilities, classes, and vibe before committing.</p>
+                </details>
+
+                <!-- FAQ Item 4 -->
+                <details
+                    class="glass-panel p-6 rounded-2xl group marker:content-none cursor-pointer open:bg-white/5 transition-all">
+                    <summary class="flex justify-between items-center font-semibold text-lg list-none">
+                        <span>Are personal trainers included in the membership?</span>
+                        <span
+                            class="material-icons transform group-open:rotate-180 transition">keyboard_arrow_down</span>
+                    </summary>
+                    <p class="text-gray-400 mt-4 leading-relaxed">General floor trainers are always available to help
+                        with safety and basic guidance. Dedicated 1-on-1 Personal Training is an add-on service
+                        customized to your goals.</p>
+                </details>
+
+                <!-- FAQ Item 5 -->
+                <details
+                    class="glass-panel p-6 rounded-2xl group marker:content-none cursor-pointer open:bg-white/5 transition-all">
+                    <summary class="flex justify-between items-center font-semibold text-lg list-none">
+                        <span>What are the gym timings?</span>
+                        <span
+                            class="material-icons transform group-open:rotate-180 transition">keyboard_arrow_down</span>
+                    </summary>
+                    <p class="text-gray-400 mt-4 leading-relaxed">We are open 24/7 for members with key-fob access.
+                        Staffed hours are from 5:00 AM to 11:00 PM daily.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-zinc-950 border-t border-white/10 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <!-- Brand -->
+            <div class="col-span-1 md:col-span-1">
+                <a href="#" class="text-2xl font-bold tracking-tighter flex items-center gap-2 mb-6">
+                    <span class="text-rigidRed text-4xl">⚡</span>
+                    <span class="uppercase tracking-widest">Rigid<span class="text-rigidRed">Fitness</span></span>
+                </a>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                    Premium fitness destination dedicated to helping you achieve your physical potential through expert
+                    coaching and elite facilities.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-white font-bold mb-6">Quick Links</h4>
+                <ul class="space-y-4 text-sm text-gray-500">
+                    <li><a href="#facilities" class="hover:text-rigidRed transition">Facilities</a></li>
+                    <li><a href="#trainers" class="hover:text-rigidRed transition">Trainers</a></li>
+                    <li><a href="#pricing" class="hover:text-rigidRed transition">Membership</a></li>
+                    <li><a href="#" class="hover:text-rigidRed transition">Careers</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="text-white font-bold mb-6">Contact Us</h4>
+                <ul class="space-y-4 text-sm text-gray-500">
+                    <li class="flex items-start gap-3">
+                        <i class="material-icons text-rigidRed text-sm">location_on</i>
+                        <span>Level 2, Phoenix Tower,<br>Main Road, City, India</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="material-icons text-rigidRed text-sm">phone</i>
+                        <span>+91 98765 43210</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="material-icons text-rigidRed text-sm">email</i>
+                        <span>hello@rigidfitness.com</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div>
+                <h4 class="text-white font-bold mb-6">Chat With Us</h4>
+                <p class="text-gray-500 text-sm mb-4">Have questions? Chat directly with our manager.</p>
+                <a href="https://wa.me/919876543210" target="_blank"
+                    class="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] px-4 py-3 rounded-xl text-white font-bold text-sm transition shadow-lg shadow-green-900/20">
+                    <i class="material-icons">chat</i>
+                    <span>Chat on WhatsApp</span>
+                </a>
+            </div>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto px-6 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-600 text-xs text-center md:text-left">
+                © 2026 Rigid Fitness. All rights reserved.
+            </p>
+            <div class="flex gap-6">
+                <!-- Social Links -->
+                <a href="https://instagram.com" target="_blank" class="text-gray-500 hover:text-white transition"><i
+                        class="material-icons">camera_alt</i></a> <!-- Insta -->
+                <a href="https://facebook.com" target="_blank" class="text-gray-500 hover:text-white transition"><i
+                        class="material-icons">facebook</i></a>
+                <a href="https://youtube.com" target="_blank" class="text-gray-500 hover:text-white transition"><i
+                        class="material-icons">smart_display</i></a>
+                <a href="https://twitter.com" target="_blank" class="text-gray-500 hover:text-white transition"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg"
+                        class="w-5 h-5 opacity-50 hover:opacity-100 bg-white rounded-full p-0.5"></a>
+            </div>
+            <p class="text-gray-600 text-xs">
+                Developed by <a href="https://www.instagram.com/milesbyabhishek/"
+                    class="text-rigidRed hover:underline font-bold">Abhishek Kumar</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- MODAL FORM -->
+    <div id="joinModal" class="modal fixed inset-0 z-[60] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+
+        <div
+            class="modal-content relative bg-[#111] border border-white/10 rounded-3xl w-full max-w-lg p-8 shadow-2xl shadow-rigidRed/20">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white">
+                <i class="material-icons">close</i>
+            </button>
+
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold mb-2">Claim Your <span class="text-rigidRed">Free Trial</span></h3>
+                <p class="text-gray-400 text-sm">Enter your details to get started. No credit card required.</p>
+            </div>
+
+            <!-- Form -->
+            <form id="leadForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-gray-500 mb-1">Full Name</label>
+                    <input type="text" name="name" required
+                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rigidRed focus:ring-1 focus:ring-rigidRed transition">
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-gray-500 mb-1">Phone Number</label>
+                    <input type="tel" name="phone" required
+                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rigidRed focus:ring-1 focus:ring-rigidRed transition">
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-gray-500 mb-1">Email Address</label>
+                    <input type="email" name="email" required
+                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rigidRed focus:ring-1 focus:ring-rigidRed transition">
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-gray-500 mb-1">Fitness Goal</label>
+                    <select name="goal"
+                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-rigidRed focus:ring-1 focus:ring-rigidRed transition">
+                        <option value="weight_loss" class="bg-black">Weight Loss</option>
+                        <option value="muscle_gain" class="bg-black">Muscle Building</option>
+                        <option value="general_fitness" class="bg-black">General Fitness</option>
+                        <option value="crossfit" class="bg-black">CrossFit / HIIT</option>
+                    </select>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" id="submitBtn"
+                        class="w-full bg-rigidRed hover:bg-red-700 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-red-900/20 flex justify-center items-center gap-2">
+                        <span>Get My Free Pass</span>
+                        <i class="material-icons text-sm">arrow_forward</i>
+                    </button>
+                    <p id="formStatus" class="text-center text-xs mt-4 hidden"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- VIDEO MODAL -->
+    <div id="videoModal"
+        class="modal fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl transition-opacity duration-300 opacity-0 invisible">
+        <button onclick="closeVideoModal()"
+            class="absolute top-6 right-6 text-white hover:text-red-500 transition z-50">
+            <i class="material-icons text-4xl">close</i>
+        </button>
+
+        <div
+            class="w-full max-w-5xl aspect-video relative shadow-2xl shadow-rigidRed/20 rounded-3xl overflow-hidden border border-white/10 bg-black">
+            <video id="tourVideo" class="w-full h-full object-cover" controls playsinline></video>
+        </div>
+    </div>
+
+    <script>
+        // Video Modal Logic (Native HTML5 Video)
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('tourVideo');
+            // High-quality stock gym footage from Mixkit/Pexels
+            videoFrame.src = "https://www.pexels.com/download/video/33261219/";
+            modal.classList.remove('invisible', 'opacity-0');
+            modal.classList.add('visible', 'opacity-100');
+            videoFrame.play();
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('tourVideo');
+            videoFrame.pause();
+            videoFrame.src = ""; // Clear source to stop buffering
+            modal.classList.remove('visible', 'opacity-100');
+            modal.classList.add('invisible', 'opacity-0');
+        }
+
+        function openModal() {
+            document.getElementById('joinModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('joinModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black/80', 'backdrop-blur-xl', 'border-white/10', 'border-b');
+                navbar.classList.remove('glass-panel', 'border-b-0');
+            } else {
+                navbar.classList.remove('bg-black/80', 'backdrop-blur-xl', 'border-white/10', 'border-b');
+                navbar.classList.add('glass-panel', 'border-b-0');
+            }
+        });
+
+        // Form Submission Logic
+        const form = document.getElementById('leadForm');
+        const statusText = document.getElementById('formStatus');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            // IMPORTANT: You must follow the google_sheet_setup.md guide to get this URL!
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzz2A1VBlBM-dQouOjrXOQ9xM1bZhLiH2bNh66KaA9gnGiKo5YjJ62h3UbXY4neA1bALw/exec';
+
+            if (scriptURL === 'INSERT_YOUR_WEB_APP_URL_HERE') {
+                statusText.innerText = "Error, Please try to reach via WhatsApp from chat button.";
+                statusText.className = "text-center text-xs mt-4 text-orange-400 block";
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="animate-spin material-icons">refresh</span> Processing...';
+
+            // Use URLSearchParams to ensure content-type is application/x-www-form-urlencoded
+            // This is the most reliable way to send data to Google Apps Script e.parameter
+            const formData = new URLSearchParams(new FormData(form));
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors', // Added to avoid CORS issues with Apps Script redirects
+                body: formData
+            })
+                .then(response => {
+                    // With 'no-cors', we won't get a proper success response body, 
+                    // but if we reach here, it means the request was sent.
+                    statusText.innerText = "Thanks! We've received your request. We'll call you shortly.";
+                    statusText.className = "text-center text-xs mt-4 text-green-400 block";
+                    submitBtn.innerHTML = 'Sent Successfully';
+                    submitBtn.classList.replace('bg-rigidRed', 'bg-green-600');
+
+                    setTimeout(() => {
+                        closeModal();
+                        form.reset();
+                        submitBtn.disabled = false;
+                        submitBtn.innerText = 'Get My Free Pass';
+                        submitBtn.classList.replace('bg-green-600', 'bg-rigidRed');
+                        statusText.classList.add('hidden');
+                    }, 4000);
+                })
+                .catch(error => {
+                    statusText.innerText = "Error! Please check your internet connection.";
+                    statusText.className = "text-center text-xs mt-4 text-red-500 block";
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Try Again';
+                    console.error('Error!', error.message);
+                });
+        });
+    </script>
+</body>
+
+</html>
